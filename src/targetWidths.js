@@ -1,19 +1,13 @@
 function targetWidths() {
   var resolutions = [];
-  var prev = 100;
-  var INCREMENT_PERCENTAGE = 8;
-  var MAX_SIZE = 8192;
+  var MIN_WIDTH = 160;
+  var MAX_WIDTH = 4000;
+  var BREAKPOINTS = 30;
 
-  function ensureEven(n) {
-    return 2 * Math.round(n / 2);
+  for (var i=0, len=BREAKPOINTS; i<len; i++) {
+    var imgWidth = Math.round(MIN_WIDTH + (i * (MAX_WIDTH / BREAKPOINTS)));
+    resolutions.push(imgWidth);
   }
-
-  while (prev <= MAX_SIZE) {
-    resolutions.push(ensureEven(prev));
-    prev *= 1 + (INCREMENT_PERCENTAGE / 100) * 2;
-  }
-
-  return resolutions;
 }
 
 module.exports = targetWidths();
